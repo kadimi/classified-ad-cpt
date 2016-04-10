@@ -1,0 +1,12 @@
+{
+    "name": "kadimi/classified-ad-cpt",
+    "require": {
+        "tgmpa/tgm-plugin-activation": "^2.5"
+    },
+    "authors": [
+        {
+            "name": "Nabil Kadimi",
+            "email": "nabil@kadimi.com"
+        }
+    ]
+}
