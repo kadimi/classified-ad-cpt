@@ -10,7 +10,7 @@ piklist('field', [
     , 'validate' => [
         [
             'type' => 'range'
-            , 'options' => ['min' => 1, 'max' => 500]
+            , 'options' => ['min' => .01, 'max' => 100 * 1e6]
         ]
     ]
     , 'required' => true
