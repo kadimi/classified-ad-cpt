@@ -41,8 +41,8 @@ jQuery(document).ready(function($) {
 			 * @type {Object}
 			 */
 			var fav_btns_HTML = {
-				add: '<a href="#" class="pp_add_to_fav"><span class="hint--top" data-hint="Add to favorites."></span></a>',
-				remove: '<a href="#" class="pp_remove_from_fav"><span class="hint--top" data-hint="Added to favorites, click to remove."></span></a>'
+				add: '<a href="#" class="pp_add_to_fav"><span class="hint--left" data-hint="Add to favorites."></span></a>',
+				remove: '<a href="#" class="pp_remove_from_fav"><span class="hint--left" data-hint="Added to favorites, click to remove."></span></a>'
 			};
 
 			/**
