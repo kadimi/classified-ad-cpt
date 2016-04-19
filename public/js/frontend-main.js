@@ -1,5 +1,51 @@
 jQuery(document).ready(function($) {
 
+	var get_favs = function() {
+		return Cookies.getJSON('kds_favorites') ? Cookies.getJSON('kds_favorites') : [];
+	};
+
+	var set_favs = function(favs) {
+		Cookies.set('kds_favorites', favs);
+	};
+
+	var update_div = function() {
+		$('#kds_favorites img').each(function() {
+
+			/**
+			 * jQuery caching.
+			 * @type {Object}
+			 */
+			var $this = $(this);
+
+			/**
+			 * Favorites from cookies.
+			 * @type {Array}
+			 */
+			var favs = get_favs();
+
+			/**
+			 * Current PrettyPhoto image URL.
+			 * @type {String}
+			 */
+			var image_URL = $this.attr("src");
+
+			/**
+			 * Holds true/false if the current image is/isn't in favorites.
+			 * @type {Boolean}
+			 */
+			var is_fav = favs.indexOf(image_URL) != -1;
+
+			/**
+			 * Blur unfavved images
+			 */
+			if (is_fav) {
+				$this.removeClass('kds_unfavved');
+			} else {
+				$this.addClass('kds_unfavved');
+			}
+		});
+	};
+
 	var add_fav_btn = function() {
 		$('.pp_details').each(function() {
 
@@ -13,10 +59,7 @@ jQuery(document).ready(function($) {
 			 * Favorites from cookies.
 			 * @type {Array}
 			 */
-			var favs = Cookies.getJSON('kds_favorites')
-				? Cookies.getJSON('kds_favorites')
-				: []
-			;
+			var favs = get_favs();
 
 			/**
 			 * Current PrettyPhoto image URL.
@@ -28,7 +71,7 @@ jQuery(document).ready(function($) {
 			 * Holds true/false if the current image is/isn't in favorites.
 			 * @type {Boolean}
 			 */
-			var is_fav = (favs.indexOf(image_URL) != -1);
+			var is_fav = favs.indexOf(image_URL) != -1;
 
 			/**
 			 * Holds true/false if the favorites buttons have/haven't been added.
@@ -59,28 +102,22 @@ jQuery(document).ready(function($) {
 			$('.pp_add_to_fav', $this).click(function(e) {
 				e.preventDefault();
 				var image_URL = $('#fullResImage').attr("src");
-				var favs = Cookies.getJSON('kds_favorites')
-					? Cookies.getJSON('kds_favorites')
-					: []
-				;
+				var favs = get_favs();
 				favs.push(image_URL);
 				favs = favs.filter(function(item, index) {
 					return favs.indexOf(item) == index;
 				});
-				Cookies.set('kds_favorites', favs);
+				set_favs(favs);
 			});
 			$('.pp_remove_from_fav', $this).click(function(e) {
 				e.preventDefault();
 				var image_URL = $('#fullResImage').attr("src");
-				var favs = Cookies.getJSON('kds_favorites')
-					? Cookies.getJSON('kds_favorites')
-					: []
-				;
+				var favs = get_favs();
 				var index = favs.indexOf(image_URL);
 				if (index != -1) {
 					favs.splice(index, 1);
 				}
-				Cookies.set('kds_favorites', favs);
+				set_favs(favs);
 			});
 			
 
@@ -98,9 +135,18 @@ jQuery(document).ready(function($) {
 	};
 
 	/**
-	 * Main Loop.
+	 * Loop for adding buttons
 	 */
 	setInterval(add_fav_btn, 1000);
+
+	/**
+	 * Apply masonry on #kds_favorites
+	 */
+	if ($('#kds_favorites').length) {
+		setInterval(update_div, 1000);
+		$('#kds_favorites').isotope();
+		$("a[rel^='prettyPhoto']").prettyPhoto({social_tools:false, deeplinking:false});
+	}
 });
 
 /*!

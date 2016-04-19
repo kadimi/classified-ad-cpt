@@ -1,3 +1,14 @@
+#kds_favorites img {
+    margin: 1px;
+    max-width: 120px;
+}
+
+.kds_unfavved {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    opacity: .3;
+}
+
 .pp_add_to_fav,
 .pp_remove_from_fav {
     background: url('http://findicons.com/files/icons/989/ivista_2/24/favorites.png');
