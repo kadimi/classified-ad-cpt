@@ -126,7 +126,15 @@ Class KDSFavorites {
             wp_enqueue_script('prettyphoto');
             wp_enqueue_style('prettyphoto');
 
-            $output = sprintf('<div id="kds_favorites">%s</div>', $output);
+            // Wrap in div
+            $output = $output 
+                ? $output = sprintf('<div id="kds_favorites">%s</div>', $output)
+                : $output = sprintf('<div id="kds_favorites_prompt">¡Crea una selección de fotografías favoritas!<br><br><button><a href="/">Empieza aquí</a></button><br><br></div>', $output)
+            ;
+
+            // Add title
+            $output = '<h3 class="shortcode-heading mk-fancy-title pattern-style align-left "><span><i class="font-icon mk-li-star mk-size-small"></i> Favorites</span></h3>' . $output;
+
             return $output;
         });
     }

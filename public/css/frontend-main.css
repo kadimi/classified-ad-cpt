@@ -1,3 +1,28 @@
+#kds_favorites_prompt {
+    text-align: center;
+}
+
+#kds_favorites_prompt button {
+    background-color: #373737;
+    border: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    padding: 20px 28px;
+    text-transform: uppercase;
+}
+
+#kds_favorites_prompt button a {
+    color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+    #kds_favorites_prompt {
+        margin-top: 45%;
+    }
+}
+
 #kds_favorites img {
     margin: 1px;
     max-width: 120px;
@@ -11,26 +36,26 @@
 
 .pp_add_to_fav,
 .pp_remove_from_fav {
-    background: url('http://findicons.com/files/icons/989/ivista_2/24/favorites.png');
+    background: url('../images/favorita.png');
     display: block;
     height: 24px;
     position: absolute;
     right: 32px;
     top: 2px;
-    width: 24px;
+    width: 112px;
+    background-position: 0 24px;
 }
 
 .pp_add_to_fav span,
 .pp_remove_from_fav span {
     display: block;
     height: 24px;
-    width: 24px;
+    width: 112px;
 }
 
 .pp_add_to_fav:not(:hover),
 .pp_remove_from_fav:hover {
-    filter: grayscale(100%);
-    -webkit-filter: grayscale(100%);
+    background-position: 0 0;
 }
 
 /*! Hint.css - v2.2.1 - 2016-03-26
